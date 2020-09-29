@@ -12,9 +12,9 @@ module OverMindInit {
 		insert(chokepoint(X1, Y1, X2, Y2, RegionId1, RegionId2)) +
 		insert(chokepoint(X2, Y2, X1, Y1, RegionId2, RegionId1)).
 		
-	if percept(enemyRace(Race)) then insert(enemyRace(Race)).
+	if percept(enemyPlayer(_, Race)) then insert(enemyRace(Race)).
 	
-	if percept(map(Width, Height)) then insert(map(Width, Height)).
+	if percept(map(_, Width, Height)) then insert(map(Width, Height)).
 	
 	forall percept(region(RegionId, CenterX, CenterY, Height, Connections)) do
 		insert(region(RegionId, CenterX, CenterY, Height, Connections)).

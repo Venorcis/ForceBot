@@ -18,7 +18,7 @@ module LurkerEvent {
 	}
 	
 	% When we're burrowing and receive a non-burrow order, cancel burrowing
-	if bel(burrowing), percept(order(Order, _, _, _, _)), bel(Order \= 'Burrowing', Order \= 'Unburrowing') then
+	if bel(burrowing), percept(order(Order, _, _, _, _, _)), bel(Order \= 'Burrowing', Order \= 'Unburrowing') then
 		delete(burrowing).
 	
 	%%%%%%%%%%%%%%% --------------------------------------- Percept Updating --------------------------------------- %%%%%%%%%%%%%%%

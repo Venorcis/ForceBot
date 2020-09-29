@@ -11,7 +11,7 @@ module Escort {
 	if bel(status(_, _, _, _, RegionId), regionOrder(RegionId, Target, Order)) then {
 		if bel(Order \= 'retreat') then {
 			% Move to closest invisible enemy unit
-			if	percept(enemy(_, _, _, _, _, C2, _, X2, Y2, R2)), bel(not(regionOrder(R2, _, 'retreat')),
+			if	percept(enemy(_, _, _, _, _, C2, _, X2, Y2, R2, _)), bel(not(regionOrder(R2, _, 'retreat')),
 				(member(cloaked, C2) ; member(burrowed, C2)), getDetectPoint(X2, Y2, X3, Y3)) then
 					ChangeTarget3('move', X3, Y3).
 					

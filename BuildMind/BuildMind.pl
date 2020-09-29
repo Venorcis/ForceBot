@@ -29,10 +29,6 @@ distance(X1, Y1, X2, Y2, D) :- D is sqrt((X2 - X1)**2 + (Y2 - Y1)**2).
 % Calculate distance between two points
 distanceSq(X1, Y1, X2, Y2, D) :- D is (X2 - X1)**2 + (Y2 - Y1)**2.
 
-% Concatenate a list of atoms
-atomic_list_concat([], '').
-atomic_list_concat([H|T], Result) :- atomic_list_concat(T, Remainder), atom_concat(H, Remainder, Result).
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%% WORKER FUNCTIONS %%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

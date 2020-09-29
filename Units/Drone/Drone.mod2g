@@ -40,7 +40,7 @@ module Drone {
 			gather(MineralId).
 	
 	% If goal to gather minerals, force drone to stay on dedicated patch
-	if goal(task('gatherMinerals', MineralId)), percept(order("MoveToMinerals", TargetId,_,_,_)), bel(not(MineralId = TargetId))
+	if goal(task('gatherMinerals', MineralId)), percept(order('MoveToMinerals', TargetId,_,_,_,_)), bel(not(MineralId = TargetId))
 		then gather(MineralId).
 
 	% If goal to gather gas, start gathering gas
@@ -48,7 +48,7 @@ module Drone {
 			gather(GeyserId).
 	
 	% If goal to gather minerals and gathering gas instead, switch
-	if	percept(order('MoveToGas', _, _, _, _)), goal(task('gatherMinerals', MineralId)) then
+	if	percept(order('MoveToGas', _, _, _, _, _)), goal(task('gatherMinerals', MineralId)) then
 			gather(MineralId).
 			
 	%%%%%%%%%%%%%%% --------------------------------------- Build Anywhere --------------------------------------- %%%%%%%%%%%%%%%
@@ -61,7 +61,7 @@ module Drone {
 				insert(clearingBlock(MineralId)).
 				
 		% Attempt to stop from getting stuck when a building fails to be constructed
-		if percept(order('IncompleteBuilding', _, _, _, _)) then
+		if percept(order('IncompleteBuilding', _, _, _, _, _)) then
 			stop.
 				
 		% If goal to build somewhere, move there

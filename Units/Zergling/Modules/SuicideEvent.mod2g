@@ -21,7 +21,7 @@ module SuicideEvent {
 		delete(base(X1, Y1, RegionId)).
 		
 	% Discovering the enemy main
-	if bel(status(_, _, _, _, RegionId), base(X1, Y1, RegionId)), percept(enemy(_, Type, _, _, _, _, _, _, _, RegionId)), bel(isBase(Type)) then
+	if bel(status(_, _, _, _, RegionId), base(X1, Y1, RegionId)), percept(enemy(_, Type, _, _, _, _, _, _, _, RegionId, _)), bel(isBase(Type)) then
 		insert(enemyMain(X1, Y1, RegionId)) +
 		delete(base(X1, Y1, RegionId)) +
 		(fighters).send:(enemyMain(X1, Y1, RegionId)).

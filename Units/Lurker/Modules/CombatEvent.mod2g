@@ -17,12 +17,12 @@ module CombatEvent {
 	%%%%%%%%%%%%%%% --------------------------------------- Enemy Targetting --------------------------------------- %%%%%%%%%%%%%%%
 	% Deleting when enemy is gone
 	if bel(closestEnemy(Id, X1, Y1, Distance)),
-		not(percept(enemy(Id, _, _, _, _, _, _, _, _, _))) then
+		not(percept(enemy(Id, _, _, _, _, _, _, _, _, _, _))) then
 			delete(closestEnemy(Id, X1, Y1, Distance)).
 	
 	% Updating the distance when it has changed
 	if bel(closestEnemy(Id, X1, Y1, Distance), status(_, _, X2, Y2, _)),
-		percept(enemy(Id, _, _, _, _, _, _, X3, Y3, _)),
+		percept(enemy(Id, _, _, _, _, _, _, X3, Y3, _, _)),
 		bel(distanceSq(X2, Y2, X3, Y3, D23), (D23 \= Distance ; X1 \= X3 ; Y1 \= Y3)) then
 			delete(closestEnemy(Id, X1, Y1, Distance)) +
 			insert(closestEnemy(Id, X3, Y3, D23)).
@@ -30,12 +30,12 @@ module CombatEvent {
 	%%%%%%%%%%%%%%% --------------------------------------- Building Targetting --------------------------------------- %%%%%%%%%%%%%%%
 	% Deleting when enemy is gone
 	if bel(closestBuilding(Id, X1, Y1, Distance)),
-		not(percept(enemy(Id, _, _, _, _, _, _, _, _, _))) then
+		not(percept(enemy(Id, _, _, _, _, _, _, _, _, _, _))) then
 			delete(closestBuilding(Id, X1, Y1, Distance)).
 			
 	% Deleting when the enemy has taken flight
 	if bel(closestBuilding(Id, X1, Y1, Distance)),
-		percept(enemy(Id, _, _, _, _, C3, _, _, _, _), member(flying, C3)) then
+		percept(enemy(Id, _, _, _, _, C3, _, _, _, _, _), member(flying, C3)) then
 			delete(closestBuilding(Id, X1, Y1, Distance)).
 	
 	% Updating the distance when it has changed
@@ -46,6 +46,6 @@ module CombatEvent {
 	
 	%%%%%%%%%%%%%%% --------------------------------------- Clearing --------------------------------------- %%%%%%%%%%%%%%%
 	% Area cleared
-	if goal(task('attack', (X1, Y1, RegionId))), bel(status(_, _, X1, Y1, _)), not(percept(enemy(_, _, _, _, _, _, _, _, _, RegionId))) then
+	if goal(task('attack', (X1, Y1, RegionId))), bel(status(_, _, X1, Y1, _)), not(percept(enemy(_, _, _, _, _, _, _, _, _, RegionId, _))) then
 		(battlemind).send:(cleared(X1, Y1)).
 }

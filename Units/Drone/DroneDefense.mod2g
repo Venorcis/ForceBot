@@ -4,7 +4,7 @@ module DroneDefense {
 	% Only store enemies if under attack
 	if percept(status(_, _, _, C1, _, _, _, RegionId)), bel(member(underAttack, C1)) then {
 		% Only store enemies in the same region
-		forall percept(enemy(Id, _, _, _, _, _, _, X2, Y2, RegionId)) do {
+		forall percept(enemy(Id, _, _, _, _, _, _, X2, Y2, RegionId, _)) do {
 			% If already inserted, update
 			if bel(not(enemy(Id, X2, Y2)), enemy(Id, X3, Y3)) then
 				delete(enemy(Id, X3, Y3)) +
@@ -16,7 +16,7 @@ module DroneDefense {
 	}
 	
 	% Delete enemies that are no longer in the base region
-	forall bel(enemy(Id, X1, Y1), defenseRegion(RegionId)), not(percept(enemy(Id, _, _, _, _, _, _, _, _, RegionId))) do
+	forall bel(enemy(Id, X1, Y1), defenseRegion(RegionId)), not(percept(enemy(Id, _, _, _, _, _, _, _, _, RegionId, _))) do
 		delete(enemy(Id, X1, Y1)).
 		
 	% Drop the target once we no longer see enemies

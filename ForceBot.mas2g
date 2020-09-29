@@ -1,4 +1,4 @@
-use "connector.jar" as environment with
+use "eisbw-3.8.0-shaded.jar" as environment with
 %	map="(2)Benzene.scx",
 %	map="(2)Destination.scx",
 %	map="(2)Heartbreak Ridge.scx",
@@ -6,16 +6,16 @@ use "connector.jar" as environment with
 	map="(4)Circuit Breaker.scx",
 %	map="(4)Fighting Spirit.scx",
 	own_race="Zerg",
-	starcraft_location="C:\Starcraft",
-	debug="true",
+	%starcraft_location="C:\Starcraft",
+	debug="false",
 	auto_menu="Single_Player",
 	enemy_race="protoss",
 	game_speed=50,
 	managers=3,
 	percepts=
 	[
-	[manager1,				base, chokepoint, enemyRace, map, region, friendly, gameframe, mineralField, resources, underConstruction, vespeneGeyser],
-	[manager2,				base, chokepoint, enemyRace, region, enemy, gameframe, friendly, gameframe, resources],
+	[manager1,				base, chokepoint, enemyPlayer, map, region, friendly, gameframe, mineralField, resources, underConstruction, vespeneGeyser],
+	[manager2,				base, chokepoint, enemyPlayer, region, enemy, gameframe, friendly, gameframe, resources],
 	[manager3,				base, chokepoint, region, constructionSite, gameframe, mineralField, vespeneGeyser],
 
 	[zergLarva				],
@@ -130,9 +130,9 @@ define structure as agent {
 }
 
 launchpolicy{
-	when type = manager1 launch overmind.
-	when type = manager2 launch battlemind.
-	when type = manager3 launch buildmind.
+	when name = manager1 launch overmind.
+	when name = manager2 launch battlemind.
+	when name = manager3 launch buildmind.
 	
 	when type = zergLarva launch larva.
 	when type = zergDrone launch drone.

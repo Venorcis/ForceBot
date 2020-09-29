@@ -33,7 +33,7 @@ module OverMindPercepts {
 	% friendly percepts
 	forall bel(friendly(Id, Type)), not(percept(friendly(Id, Type))) do
 		delete(friendly(Id, Type)).
-	forall percept(friendly(Id, Type)), not(bel(friendly(Id, Type))), not(percept(underConstruction(Id, _, _, _, _))) do
+	forall percept(friendly(Id, Type)), not(bel(friendly(Id, Type))), not(percept(underConstruction(Id, _, _, _, _, _))) do
 		insert(friendly(Id, Type)).
 		
 	% vespeneGeyser percepts
@@ -51,8 +51,8 @@ module OverMindPercepts {
 		insert(mineralFieldN(Id, X, Y, RegionId, 2)).
 	
 	% underConstruction percepts
-	forall bel(underConstruction(Id, Type, X, Y, RegionId)), not(percept(underConstruction(Id, _, _, _, _))) do
+	forall bel(underConstruction(Id, Type, X, Y, RegionId)), not(percept(underConstruction(Id, _, _, _, _, _))) do
 		delete(underConstruction(Id, Type, X, Y, RegionId)).
-	forall percept(underConstruction(Id, _, X, Y, RegionId)), percept(friendly(Id, Type)), bel(not(underConstruction(Id, _, _, _, _))) do
+	forall percept(underConstruction(Id, _, _, X, Y, RegionId)), percept(friendly(Id, Type)), bel(not(underConstruction(Id, _, _, _, _))) do
 		insert(underConstruction(Id, Type, X, Y, RegionId)).
 }

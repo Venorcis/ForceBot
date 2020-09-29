@@ -87,10 +87,6 @@ distance(X1, Y1, X2, Y2, D) :- D is sqrt((X2 - X1)**2 + (Y2 - Y1)**2).
 % Calculate distance between two points, but do not root it (faster)
 distanceSq(X1, Y1, X2, Y2, D) :- D is (X2 - X1)**2 + (Y2 - Y1)**2.
 
-% Concatenate a list of atoms
-atomic_list_concat([], '').
-atomic_list_concat([H|T], Result) :- atomic_list_concat(T, Remainder), atom_concat(H, Remainder, Result).
-
 % Retrieves all elements different between two lists
 listDifference(L1, L2, Remainder) :- subtract(L1, L2, R1), subtract(L2, L1, R2), append(R1, R2, Remainder).
 

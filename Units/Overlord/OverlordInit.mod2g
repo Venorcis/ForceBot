@@ -15,11 +15,11 @@ module OverlordInit {
 		subscribe(overlords).
 		
 	% Order percept
-	if percept(order(Primary, _, X1, Y1, _)) then
+	if percept(order(Primary, _, X1, Y1, _, _)) then
 		insert(order(Primary, X1, Y1)).
 	
 	% Map percept
-	if percept(map(Width, Height)) then
+	if percept(map(_, Width, Height)) then
 		insert(map(Width, Height)).
 		
 	% Store regions

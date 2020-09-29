@@ -13,7 +13,7 @@ module BattleMindInit {
 		insert(chokepoint(X2, Y2, X1, Y1, RegionId2, RegionId1)).
 	
 	% EnemyRace percept
-	if percept(enemyRace(Race)) then insert(enemyRace(Race)).
+	if percept(enemyPlayer(_, Race)) then insert(enemyRace(Race)).
 	
 	% Store all regions
 	forall percept(region(RegionId, CenterX, CenterY, Height, Connections)) do

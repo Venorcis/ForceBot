@@ -8,7 +8,7 @@ order = linear.
 module Explore {
 	%%%%%%%%%%%%%%% --------------------------------------- Explore Order Decision Making --------------------------------------- %%%%%%%%%%%%%%%
 	% Attacking enemies
-	if	percept(enemy(Id1, _, _, _, _, _, _, X1, Y1, _)), not(percept(enemy(Id2, _, _, _, _, _, _, _, _, _), Id2 < Id1)) then
+	if	percept(enemy(Id1, _, _, _, _, _, _, X1, Y1, _, _)), not(percept(enemy(Id2, _, _, _, _, _, _, _, _, _, _), Id2 < Id1)) then
 			ChangeTarget3('attack', X1, Y1).
 	
 	% Moving to random places

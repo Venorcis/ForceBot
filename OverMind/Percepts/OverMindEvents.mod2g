@@ -30,7 +30,7 @@ module OverMindEvents {
 	
 	%%%%%%%%%%%%%%% --------------------------------------- Extractor Built --------------------------------------- %%%%%%%%%%%%%%%
 	% Extractors use the Id of the Geyser, not the drone. As such, special code is required to prevent the area's below this from getting confused.
-	forall percept(underConstruction(GeyserId, _, X1, Y1, RegionId)), percept(friendly(GeyserId, 'Zerg Extractor')),
+	forall percept(underConstruction(GeyserId, _, _, X1, Y1, RegionId)), percept(friendly(GeyserId, 'Zerg Extractor')),
 		bel(vespeneGeyser(GeyserId, X2, Y2, _), X1 =:= X2 + 2, Y1 =:= Y2 + 1, not(underConstruction(GeyserId, _, X1, Y1, RegionId))),
 		bel(task(DroneId, 'build', 'Zerg Extractor'), buildTarget(DroneId, X2, Y2, RegionId), agent(DroneId, Agent)) do
 			FreeResources('Zerg Extractor') +
@@ -50,7 +50,7 @@ module OverMindEvents {
 	}
 	
 	%%%%%%%%%%%%%%% --------------------------------------- Morph End --------------------------------------- %%%%%%%%%%%%%%%
-	forall bel(underConstruction(Id, Type, _, _, _)), not(percept(underConstruction(Id, _, _, _, _))), percept(friendly(Id, _)) do {
+	forall bel(underConstruction(Id, Type, _, _, _)), not(percept(underConstruction(Id, _, _, _, _, _))), percept(friendly(Id, _)) do {
 		% Handles all other cases
 		if not(bel(morphing(Id, _))) then MorphEndEvent(Id, Type).
 		% For handling cases of morphing into Zerg Lurker Egg or Zerg Cocoon

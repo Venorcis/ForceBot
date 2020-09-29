@@ -23,7 +23,7 @@ module OverlordEvent {
 			insert(status(Health, Conditions, X, Y, RegionId)).
 			
 	% Order updating
-	if percept(order(Primary, _, X1, Y1, _)), bel(order(OldPrimary, X2, Y2)) then
+	if percept(order(Primary, _, X1, Y1, _, _)), bel(order(OldPrimary, X2, Y2)) then
 		delete(order(OldPrimary, X2, Y2)) +
 		insert(order(Primary, X1, Y1)).
 	
@@ -55,7 +55,7 @@ module OverlordEvent {
 	if not(goal(task('escort', _))) then {		
 		%%%%%%%%%%%%%%% --------------------------------------- Enemy Base Spotting --------------------------------------- %%%%%%%%%%%%%%%
 		if goal(task(Order, (X1, Y1, RegionId))), bel((Order = 'scout' ; Order = 'watch')) then {
-			if percept(enemy(_, Type, _, _, _, _, _, _, _, RegionId)), bel(isBuilding(Type), status(_, _, X2, Y2, _)) then
+			if percept(enemy(_, Type, _, _, _, _, _, _, _, RegionId, _)), bel(isBuilding(Type), status(_, _, X2, Y2, _)) then
 				drop(task(Order, (X1, Y1, RegionId))) +
 				(overmind).send:(enemyBase(X1, Y1, RegionId)) +
 				(overmind).send?(overlordOrder(X2, Y2)).

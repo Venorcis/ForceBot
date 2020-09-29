@@ -18,7 +18,7 @@ module UltraliskInit {
 		insert(region(RegionId, X, Y)).
 		
 	% Store map dimensions
-	if percept(map(Width, Height)) then
+	if percept(map(_, Width, Height)) then
 		insert(map(Width, Height)).
 	
 	% Request regionOrders from battlemind

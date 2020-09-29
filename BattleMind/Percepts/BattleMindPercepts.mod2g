@@ -38,7 +38,7 @@ module BattleMindPercepts {
 	%%%%%%%%%%%%%%% --------------------------------------- Enemy Updating --------------------------------------- %%%%%%%%%%%%%%%				
 	if bel(not(simDisabled)) then {
 		% Update the enemy sims
-		forall percept(enemy(Id, Type, Health, Shields, _, _, _, _, _, RegionId)),
+		forall percept(enemy(Id, Type, Health, Shields, _, _, _, _, _, RegionId, _)),
 			bel(enemy(Id, _, _, _, _, _, _), Vitality is Health + Shields,
 			not(enemy(Id, Type, Vitality, _, _, RegionId, _)), enemy(Id, OldType, OldVitality, _, _, OldRegionId, _)) do
 				EnemyUpdate(Type, Vitality, RegionId, OldType, OldVitality, OldRegionId) +
@@ -49,7 +49,7 @@ module BattleMindPercepts {
 				ProcessEnemyBeliefs(Id, Type, Vitality, X, Y, RegionId, Visibility).
 				
 		% Store new enemies
-		forall percept(enemy(Id, Type, Health, Shields, _, _, _, X, Y, RegionId)),
+		forall percept(enemy(Id, Type, Health, Shields, _, _, _, X, Y, RegionId, _)),
 			bel(combat(Type, _, _, _, _, _), not(enemy(Id, _, _, _, _, _, _)), Vitality is Health + Shields) do
 				insert(enemy(Id, Type, Vitality, X, Y, RegionId, true)) +
 				AddToEnemySim(RegionId, Type, Vitality).

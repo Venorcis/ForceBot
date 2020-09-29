@@ -13,7 +13,7 @@ module LurkerInit {
 		(overmind).send?(unitKnowledge(Id, Type)).
 	
 	% Map percept
-	if percept(map(Width, Height)) then
+	if percept(map(_, Width, Height)) then
 		insert(map(Width, Height)).
 	
 	if true then
